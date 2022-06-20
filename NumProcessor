@@ -1,0 +1,30 @@
+
+
+
+def get_file_name():
+    while True:
+        user_file = input("What is the name of your file?")
+        if user_file == "":
+            print("Please enter the name of a valid file")
+        else:
+            return user_file 
+def file_formatter(given_file):
+    file_open = open(given_file, "r")
+    file_list = file_open.readlines()
+    for x in range(len(file_list)):
+        y = file_list[x]
+        y = int(y.strip())
+        file_list[x] = y
+        
+    return file_list
+
+
+     
+
+
+def main():
+    file = get_file_name()
+    value_list = file_formatter(file)
+    print(value_list)
+    pass
+main()

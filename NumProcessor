@@ -1,11 +1,13 @@
-
-
+import os.path
+from statistics import mean, multimode, median
 
 def get_file_name():
     while True:
         user_file = input("What is the name of your file?")
         if user_file == "":
-            print("Please enter the name of a valid file")
+            print("Error: Invalid File Name")
+        elif not os.path.exists(user_file):
+            print("Error: File not Found")
         else:
             return user_file 
 def file_formatter(given_file):
@@ -15,16 +17,43 @@ def file_formatter(given_file):
         y = file_list[x]
         y = int(y.strip())
         file_list[x] = y
-        
+
     return file_list
 
+def max_value(list):
+    maximum = max(list)
+    return maximum
+def min_value(list):
+    minimum = min(list)
+    return minimum
+def avg_value(list):
+    average = mean(list)
+    return average
+def med_value(list):
+    med = median(list)
+    return med
+def mode_value(list):
+    mde = multimode(list)
+    return mde
+def display_mode(mode):
+    for x in range(len(mode)):
+        y = mode[x]
+        print(f"Mode {x + 1}: {y} \n")
 
-     
 
 
 def main():
     file = get_file_name()
     value_list = file_formatter(file)
-    print(value_list)
+    list_max = max_value(value_list)
+    print(f"Maximum: {list_max} \n")
+    list_min = min_value(value_list)
+    print(f"Minimum: {list_min} \n")
+    list_avg = avg_value(value_list)
+    print(f"Average: {list_avg} \n")
+    list_med = med_value(value_list)
+    print(f"Median: {list_med} \n")
+    list_mode = mode_value(value_list)
+    display_mode(list_mode)
     pass
 main()

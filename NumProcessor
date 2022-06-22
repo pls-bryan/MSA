@@ -25,6 +25,10 @@ def file_formatter(given_file):
         file_list[x] = y
     return file_list
 #returns various statistical values for the given list (maximum, minumum, average, median, mode(s))
+def sum_value(list):
+    return sum(list)
+def count_value(list):
+    return len(list)
 def max_value(list):
     return max(list)
 def min_value(list):
@@ -45,18 +49,26 @@ def display_mode(mode):
         print(f"Mode {x + 1}: {y} \n")
 #prompts for file, checks file, and displays various stats for the numbers in the file
 def main():
-    file = get_file_name()
-    value_list = file_formatter(file)
-    list_max = max_value(value_list)
-    print(f"Maximum: {list_max} \n")
-    list_min = min_value(value_list)
-    print(f"Minimum: {list_min} \n")
-    list_range = range_value(value_list)
-    print(f"Range: {list_range} \n")
-    list_avg = avg_value(value_list)
-    print(f"Average: {list_avg} \n")
-    list_med = med_value(value_list)
-    print(f"Median: {list_med} \n")
-    list_mode = mode_value(value_list)
-    display_mode(list_mode)
+    while True:
+        file = get_file_name()
+        value_list = file_formatter(file)
+        list_sum = sum_value(value_list)
+        print(f"Sum: {list_sum}")
+        list_count = count_value(value_list)
+        print(f"Count: {list_count}")
+        list_max = max_value(value_list)
+        print(f"Maximum: {list_max} \n")
+        list_min = min_value(value_list)
+        print(f"Minimum: {list_min} \n")
+        list_range = range_value(value_list)
+        print(f"Range: {list_range} \n")
+        list_avg = avg_value(value_list)
+        print(f"Average: {list_avg} \n")
+        list_med = med_value(value_list)
+        print(f"Median: {list_med} \n")
+        list_mode = mode_value(value_list)
+        display_mode(list_mode)
+        user_continue = input("Would you like to process another list? (Y/N)")
+        if user_continue not in {"Yes", "Y", "yes", "y"}:
+            break
 main()

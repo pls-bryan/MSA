@@ -68,7 +68,7 @@ def main():
         print(f"Median: {list_med} \n")
         list_mode = mode_value(value_list)
         display_mode(list_mode)
-        user_continue = input("Would you like to process another list? (Y/N)")
-        if user_continue not in {"Yes", "Y", "yes", "y"}:
+        user_continue = input("Would you like to process another list? (Y/N)").lower
+        if user_continue not in {"yes", "y"}:
             break
 main()

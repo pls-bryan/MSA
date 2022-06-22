@@ -26,20 +26,18 @@ def file_formatter(given_file):
     return file_list
 #returns various statistical values for the given list (maximum, minumum, average, median, mode(s))
 def max_value(list):
-    maximum = max(list)
-    return maximum
+    return max(list)
 def min_value(list):
-    minimum = min(list)
-    return minimum
+    return min(list)
+def range_value(list):
+    range = max(list) - min(list)
+    return range
 def avg_value(list):
-    average = mean(list)
-    return average
+    return mean(list)
 def med_value(list):
-    med = median(list)
-    return med
+    return median(list)
 def mode_value(list):
-    mde = multimode(list)
-    return mde
+    return multimode(list)
 #parses the list from the mode function into plain numbers
 def display_mode(mode):
     for x in range(len(mode)):
@@ -53,6 +51,8 @@ def main():
     print(f"Maximum: {list_max} \n")
     list_min = min_value(value_list)
     print(f"Minimum: {list_min} \n")
+    list_range = range_value(value_list)
+    print(f"Range: {list_range} \n")
     list_avg = avg_value(value_list)
     print(f"Average: {list_avg} \n")
     list_med = med_value(value_list)

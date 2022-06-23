@@ -1,0 +1,18 @@
+from automobile import Automobile
+
+def print_data(automobile_object):
+    print("Auto Data \n")
+    print(f"Car Type: {automobile_object.get_make()} {automobile_object.get_model()}")
+    #print(automobile_object.model)
+    print(f"Color: {automobile_object.get_color()}")
+    print(f"Year: {automobile_object.get_year()}")
+    print(f"Current Age: {automobile_object.get_age()}")
+    print(automobile_object.get_vin())
+def main():
+    #create an instance of Automobile
+    auto1 = Automobile("Toyota", "Corolla", "12345", "Red", 2005)
+    print_data(auto1)
+    auto1.set_color("Green")
+    print_data(auto1)
+    auto1.honk_horn(3)
+main()

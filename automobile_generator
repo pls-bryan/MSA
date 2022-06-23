@@ -11,8 +11,11 @@ def print_data(automobile_object):
 def main():
     #create an instance of Automobile
     auto1 = Automobile("Toyota", "Corolla", "12345", "Red", 2005)
-    print_data(auto1)
-    auto1.set_color("Green")
-    print_data(auto1)
-    auto1.honk_horn(3)
+    auto2 = Automobile("Tesla", "Model-S", "87654", "White", 2019)
+    
+    list_of_automobiles = []
+    list_of_automobiles.append(auto1)
+    list_of_automobiles.append(auto2)
+    for car in list_of_automobiles:
+        print_data(car)
 main()

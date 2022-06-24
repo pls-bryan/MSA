@@ -1,10 +1,10 @@
 class Student:
-    def __init__(self, first_name, last_name, id_number, major, grade_level, gpa):
+    def __init__(self, first_name, last_name, major, credit_hours, gpa, id_number):
         self.__first_name = first_name
         self.__last_name = last_name
         self.__id_number = id_number
         self.__major = major
-        self.__grade_level = grade_level
+        self.__credit_hours = credit_hours
         self.__gpa = gpa
     
     def get_first_name(self):
@@ -28,11 +28,11 @@ class Student:
     def set_major(self, major):
         self.__major = major
     
-    def get_grade_level(self):
-        return self.__grade_level
+    def get_credit_hours(self):
+        return self.__credit_hours
 
-    def set_grade_level(self, grade_level):
-        self.__grade_level = grade_level
+    def set_credit_hours(self, credit_hours):
+        self.__credit_hours = credit_hours
 
     def get_gpa(self):
         return self.__gpa
@@ -40,4 +40,15 @@ class Student:
     def set_gpa(self, gpa):
         self.__gpa = gpa
 
-    
+    def get_class_level(self):
+        if float(self.__credit_hours) > 90:
+            return "Senior"
+        elif float(self.__credit_hours) > 60:
+            return "Junior"
+        elif float(self.__credit_hours) > 30:
+            return "Sophomore"
+        else:
+            return "Freshman"
+
+    def update_credit_hours(self, additional_hours):
+        self.__credit_hours += additional_hours

@@ -25,10 +25,14 @@ def print_data(student):
     print(f"GPA: {student.get_gpa()}")
     print(f"Class Level: {student.get_class_level()}\n")
     
+def sort_list(student_list):
+    student_list.sort(key = lambda the_student: the_student.get_first_name())
+    return student_list
     
 def main():
     load = load_students("students.csv")
-    for x in load:
+    sorted_load = sort_list(load)
+    for x in sorted_load:
             print_data(x) 
 
 main()

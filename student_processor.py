@@ -23,7 +23,7 @@ def print_data(student):
     print(f"Major: {student.get_major()}")
     print(f"Credit Hours: {student.get_credit_hours()}")
     print(f"GPA: {student.get_gpa()}")
-    print(f"Grade Level: {student.get_class_level()}\n")
+    print(f"Class Level: {student.get_class_level()}\n")
     
     
 def main():

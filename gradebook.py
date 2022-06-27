@@ -27,7 +27,7 @@ def student_avg(list):
     print("\n")
 def assignment_avg(list):
     print("Assignment Grade Averages: \n")
-    for x in range(len(list)):
+    for x in range(len(list[0])):
         assignment_list = []
         for y in list:
             assignment_list.append(y[x])

@@ -1,0 +1,56 @@
+import requests #allows http and https request through the internet
+import time
+def main():
+    #get the webpage using url
+    
+    
+    url = "http://web.mta.info/developers/turnstile.html"
+    base_download_url = "http://web.mta.info/developers/"
+    list_of_links = []
+    web_page = requests.get(url)
+    # get opening <div class="span-84 last"> tag
+    opening_tag_location = web_page.text.find('<div class="span-84 last">')
+    print(opening_tag_location)
+    closing_tag_location = web_page.text.find('</div>', opening_tag_location)
+    print(closing_tag_location)
+    #find location on page with the links 
+    link_container = web_page.text[opening_tag_location:closing_tag_location]
+    #extract links to the turnstile text files
+    end_link_location = -1
+    while True:
+        # find opening href tag
+        href_tag_location = link_container.find('f="', end_link_location + 1)
+        if href_tag_location == -1:
+            break
+        end_link_location = link_container.find('>', href_tag_location)
+        list_of_links.append(link_container[href_tag_location + 1:end_link_location - 1].strip('="'))
+    
+
+    #file name list generator
+    #file_names = []
+    counter = 0
+    for link in list_of_links:
+        file_names_list = link.split('/')
+        file_name = file_names_list[-1]
+        #file_names.append(file_name)
+        print(f"Downloading {file_name}...")
+
+        #request the file
+        file_data = requests.get(base_download_url + link)
+
+        #write file to local drive
+        downloaded_file = open(file_name, "w")
+        downloaded_file.write(file_data.text)
+        counter += 1
+        if counter >= 10:
+            break
+        
+        time.sleep(3)
+            
+
+
+    
+    #get the text files from the extracted links
+    #save all the text files into a folder
+    
+main()

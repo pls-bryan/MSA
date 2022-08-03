@@ -8,14 +8,18 @@ def main():
     url = "http://web.mta.info/developers/turnstile.html"
     base_download_url = "http://web.mta.info/developers/"
     list_of_links = []
+    list_of_names = []
     web_page = requests.get(url)
     # get opening <div class="span-84 last"> tag
     opening_tag_location = web_page.text.find('<div class="span-84 last">')
     closing_tag_location = web_page.text.find('</div>', opening_tag_location)
+
     #find location on page with the links 
     link_container = web_page.text[opening_tag_location:closing_tag_location]
+    
     #extract links to the turnstile text files
     end_link_location = -1
+    end_name_location = -1
     while True:
         # find opening href tag
         href_tag_location = link_container.find('f="', end_link_location + 1)
@@ -23,14 +27,18 @@ def main():
             break
         end_link_location = link_container.find('>', href_tag_location)
         list_of_links.append(link_container[href_tag_location + 1:end_link_location - 1].strip('="'))
+        start_name_location = end_link_location
+        end_name_location = link_container.find('<', start_name_location)
+        list_of_names.append(link_container[start_name_location + 1:end_name_location])
     
+        
 
     #file name list generator
     #file_names = []
     counter = 0
     for link in list_of_links:
-        file_names_list = link.split('/')
-        file_name = file_names_list[-1]
+        
+        file_name = list_of_names[counter]
         #file_names.append(file_name)
         print(f"Downloading {file_name}...")
 
@@ -38,7 +46,7 @@ def main():
         file_data = requests.get(base_download_url + link)
 
         #write file to local drive
-        downloaded_file = open(file_name, "w")
+        downloaded_file = open(f"/Users/bammo/Documents/GitHub/Experiments/{file_name}", "w")
         downloaded_file.write(file_data.text)
         counter += 1
         if counter >= 10:
